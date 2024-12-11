@@ -1,0 +1,186 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    line-height: 1.6;
+    background: linear-gradient(to bottom, rgba(205, 203, 203, 0.8), rgba(180, 180, 180, 0.8)), 
+                url('https://source.unsplash.com/1600x900/?education,technology');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    padding: 0;
+    background-image: url(https://img.freepik.com/free-vector/hexagonal-infographic-white-background-template_1017-19276.jpg?t=st=1733832633~exp=1733836233~hmac=771f27bb77ed78095f02857f7e9ddc0d8e8486c2245cba36e64f01035a26da37&w=1060);
+}
+
+/* Header Styling */
+header {
+    text-align: center;
+    color: #fff;
+    padding: 20px;
+    background: #004466;
+    margin-bottom: 0;
+    border-radius: 8px;
+}
+
+header ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-items: start;
+}
+
+header ul li {
+    background-color: #dcedff;
+    margin-bottom: 0.5rem;
+    padding: 0.75rem;
+    border-radius: 5px;
+    margin: 0.5rem;
+}
+
+header h1 {
+    font-size: 2.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+a {
+    color: #2d324a;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+header h2 {
+    font-size: 1.6rem;
+    font-weight: normal;
+}
+
+/* Main Content Styling */
+main {
+    max-width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Section and Article Styling */
+section h2 {
+    font-size: 2rem;
+    color: #003366;
+    margin-bottom: 10px;
+    border-bottom: 3px solid #006699;
+    padding-bottom: 5px;
+}
+
+article {
+    margin-bottom: 20px;
+}
+
+article h3 {
+    font-size: 1.6rem;
+    color: #006699;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+article p {
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 10px;
+}
+
+/* List Styling */
+article ul {
+    list-style: square;
+    padding-left: 20px;
+    margin-top: 10px;
+    color: #003366;
+}
+
+article ul li {
+    margin-bottom: 8px;
+    font-size: 1rem;
+}
+
+/* Button Styling (Optional) */
+button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background: #006699;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+button:hover {
+    background: #004466;
+}
+
+footer {
+    text-align: center;
+    padding: 1.5rem;
+    background: #004466;
+    color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 3rem;
+}
+
+footer p {
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    header h2 {
+        font-size: 1.3rem;
+    }
+
+    main {
+        padding: 15px;
+    }
+
+    section h2 {
+        font-size: 1.5rem;
+    }
+
+    article h3 {
+        font-size: 1.3rem;
+    }
+}
+
+ul {
+    font-size: 20px;
+}
+
+ul ol{
+    padding: 0px 0px 0px 25px;
+    
+}
+button a{
+    color: white;
+    font-size: 0.8rem;
+    text-decoration: none;
+}

@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omkar - Course Learning Reflections</title>
+    <link rel="stylesheet" href="stylesom.css">
+</head>
+
+<body>
+    <header>
+        <h1>Design and Analysis of Algorithms</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#problems">1. Kinds of Problems in Nature</a></li>
+            <li><a href="#efficiency">2. Space and Time Efficiency</a></li>
+            <li><a href="#design-principles">3. Takeaways from Design Principles</a></li>
+            <li><a href="#hierarchical-data">4. Hierarchical Data and Tree Structures</a></li>
+            <li><a href="#array-queries">5. Array Query Algorithms</a></li>
+            <li><a href="#trees-vs-graphs">6. Trees vs Graphs</a></li>
+            <li><a href="#sorting-searching">7. Sorting and Searching Algorithms</a></li>
+            <li><a href="#graph-algorithms">8. Graph Algorithms</a></li>
+            <li><a href="#techniques">9. Algorithm Design Techniques</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="problems">
+            <h2>1. Kinds of Problems in Nature</h2>
+            <p><strong>Iteration:</strong> Problems involving repetitive tasks where the solution builds up
+                step-by-step.</p>
+            <p>Examples: Calculating factorials, summing numbers in a range, linear search.</p>
+            <pre>Calculating Factorial : 
+                        <code>long long factorial(int n) {
+                            long long result = 1;
+                            for (int i = 1; i <= n; ++i) {
+                                result *= i;
+                            }
+                            return result;
+                        }</code></pre>
+            </div>
+            <p>Suitability: Efficient for problems with predictable steps or no branching logic.</p>
+            <pre>Fibonacci series :
+                <code>
+                    int fibonacci(int n) {
+                        if (n <= 1) {
+                            return n; // Base cases: Fibonacci(0) = 0, Fibonacci(1) = 1
+                        }
+                        return fibonacci(n - 1) + fibonacci(n - 2); // Recursive step
+                    }
+                </code>
+            </pre>
+            <p><strong>Recursion:</strong> Problems with smaller sub-problems of the same type, solved by calling the
+                function itself.</p>
+            <p>Examples: Tower of Hanoi, Fibonacci sequence, tree traversals.</p>
+            <pre>Tower of Hanoi :
+                <code>
+                        #include &lt;stdio.h&gt;
+                        #include &lt;stdlib.h&gt;
+                        void towers(int, char, char, char);
+                        int main()
+                        {
+                        int n;
+                        printf("Enter the number of Disks to be moved\n");
+                        scanf("%d", &n);
+                        towers(n, 'A', 'C', 'B');
+                        return 0;
+                        }
+                        void towers(int n, char from, char to, char aux)
+                        {
+                        if( n == 1) {
+                        printf("Move disk 1 from %c to %c\n", from, to);
+                        return;
+                        }
+                        // Move top n-1 disks from A to B using C as auxiliary
+                        towers(n-1, from, aux, to);
+                        // Move remaining disk from A to C
+                        printf("Move disk %d from %c to %c\n", n, from, to);
+                        // Move n-1 disks from B to C using A as auxiliary
+                        towers(n-1, aux, to, from);
+                        }                     
+                </code>
+            </pre>
+            <p>Suitability: Ideal for problems with hierarchical or divide-and-conquer structures.</p>
+
+            <p><strong>Backtracking:</strong> Problems requiring exploration of all configurations, eliminating invalid
+                ones along the way.</p>
+            <p>Examples: N-Queens problem, Sudoku solver, solving mazes.</p>
+            <pre>N-Queens problem :
+                <code>
+                        #include &lt;stdio.h&gt;
+                        #include &lt;stdlib.h&gt;
+                        #include &lt;iostream&gt;
+
+                            using namespace std;
+                            
+                            bool isSafe(int board[][10], int row, int col, int N) {
+                                for (int i = 0; i < row; i++) {
+                                    if (board[i][col] == 1 || 
+                                        (col - (row - i) >= 0 && board[i][col - (row - i)] == 1) || 
+                                        (col + (row - i) < N && board[i][col + (row - i)] == 1)) {
+                                        return false;
+                                    }
+                                }
+                                return true;
+                            }
+                            
+                            bool solveNQueens(int board[][10], int row, int N) {
+                                if (row == N) {
+                                    for (int i = 0; i < N; i++) {
+                                        for (int j = 0; j < N; j++) {
+                                            if (board[i][j] == 1) cout << "Q ";
+                                            else cout << ". ";
+                                        }
+                                        cout << endl;
+                                    }
+                                    cout << endl;
+                                    return true;
+                                }
+                            
+                                bool res = false;
+                                for (int col = 0; col < N; col++) {
+                                    if (isSafe(board, row, col, N)) {
+                                        board[row][col] = 1;
+                                        res = solveNQueens(board, row + 1, N) || res;
+                                        board[row][col] = 0;
+                                    }
+                                }
+                                return res;
+                            }
+                            
+                            void solveNQueens(int N) {
+                                int board[10][10] = {0};
+                                if (!solveNQueens(board, 0, N)) {
+                                    cout << "Solution does not exist!" << endl;
+                                }
+                            }
+                            
+                            int main() {
+                                int N;
+                                cout << "Enter the value of N: ";
+                                cin >> N;
+                                solveNQueens(N);
+                                return 0;
+                            }
+                                                 
+                </code>
+            </pre>
+        </section>
+
+        <section id="efficiency">
+            <h2>2. Space and Time Efficiency</h2>
+            <p><strong>Space Efficiency:</strong> The amount of memory an algorithm uses during execution. Importance:
+                Reduces memory consumption, crucial in memory-constrained systems.</p>
+            <p>Example: Recursive algorithms (like computing Fibonacci numbers) may need more memory because each
+                recursive call adds a new layer to the call stack.</p>
+
+            <p><strong>Time Efficiency:</strong> The time an algorithm takes to run, measured in terms of input size
+                (asymptotic analysis). Importance: Reduces execution time, critical in time-sensitive systems like
+                real-time applications.</p>
+
+            <h3>Classes of Problems</h3>
+            <ul>
+                <li><strong>P:</strong> Problems solvable in polynomial time (e.g., sorting).</li>
+                <li><strong>NP:</strong> Problems for which solutions can be verified in polynomial time (e.g.,
+                    traveling salesman).</li>
+                <li><strong>NP-Hard/NP-Complete:</strong> Problems that are at least as hard as NP problems, with no
+                    known polynomial-time solutions.</li>
+            </ul>
+
+            <h3>Orders of Growth</h3>
+            <ul>
+                <li><strong>O(1):</strong> Constant time (e.g., accessing an element in an array).</li>
+                <li><strong>O(log n):</strong> Logarithmic time (e.g., binary search).</li>
+                <li><strong>O(n):</strong> Linear time (e.g., linear search).</li>
+                <li><strong>O(n log n):</strong> Sorting algorithms like MergeSort.</li>
+                <li><strong>O(n²):</strong> Quadratic time (e.g., Bubble Sort).</li>
+                <li><strong>O(2ⁿ):</strong> Exponential time (e.g., solving the Tower of Hanoi).</li>
+            </ul>
+        </section>
+
+        <section id="design-principles">
+            <h2>3. Takeaways from Design Principles</h2>
+            <ul>
+                <li><strong>Divide and Conquer:</strong> Break a problem into smaller sub-problems, solve them, and
+                    combine results (e.g., MergeSort, QuickSort).</li>
+                <pre>
+                    <code>
+                        Merge Sort
+                            ALGORITHM MergeSort(A[0..n-1])
+                            // Sorts a given A[0..n-1] by recursive mergesort
+                            // Input: An array A[0..n-1] of orderable elements
+                            // Output: Array A[0...n-1] sorted in nondecreasing order
+                            if n > 1
+                            copy A[0...|_n/2_| - 1 ] to B[0...|_n/2_| - 1]
+                            copy A[ |_n/2_| ... n - 1 ] to C[0......| ̄ n/2  ̄| - 1]
+                            MergeSort(B[0...|_n/2_| - 1] )
+                            MergeSort(C[0......| ̄ n/2  ̄| - 1] )
+                            Merge(B,C,A)
+
+                        ALGORITHM Merge(B[0...p-1], C[0...q-1], A[0...p+q-1])
+                            // Merges two sorted arrays into one sorted array
+                            // Input: Arrays B[0...p-1] and C[0...q-1] both sorted
+                            // Output: Sorted array A[0...p+q-1]of the elements of B and C
+                            i <- 0
+                            j <- 0
+                            k <- 0
+                            while i < p and j < q do
+                            if B[i] <= C[j]
+                            A[k] <- B[i]
+                            i <- i + 1
+                            else
+                            A[k] <- C[j]
+                            j <- j + 1
+                            k <- k + 1
+                            if i = p
+                            copy C[j...q - 1] to A[k...p + q - 1]
+                            else
+                            copy B[i...p - 1] to A[k...p + q - 1]
+                    </code>
+                </pre>
+                <li><strong>Dynamic Programming:</strong> Store solutions to sub-problems to avoid redundant computation
+                    (e.g., Knapsack problem).</li>
+                <li><strong>Greedy Algorithms:</strong> Make locally optimal choices aiming for global optimum (e.g.,
+                    Prim’s and Kruskal’s algorithms).</li>
+                <pre>
+                    Kruskal’s Algorithm :
+                    <code>                  
+                    int Find(int parent[], int i) {
+                        if (parent[i] != i)
+                            parent[i] = Find(parent, parent[i]);
+                        return parent[i];
+                    }
+
+                    void Union(int parent[], int rank[], int x, int y) {
+                        int xroot = Find(parent, x);
+                        int yroot = Find(parent, y);
+
+                        if (rank[xroot] < rank[yroot])
+                            parent[xroot] = yroot;
+                        else if (rank[xroot] > rank[yroot])
+                            parent[yroot] = xroot;
+                        else {
+                            parent[yroot] = xroot;
+                            rank[xroot]++;
+                        }
+                    }
+
+                    void KruskalMST(Edge edges[], int E, int V) {
+                        int weights[E], idx[E];
+                        for (int i = 0; i < E; i++) {
+                            weights[i] = edges[i].weight;
+                            idx[i] = i;
+                        }
+
+                        MergeSort(weights, idx, 0, E - 1);
+
+                        int parent[V], rank[V];
+                        for (int i = 0; i < V; i++) {
+                            parent[i] = i;
+                            rank[i] = 0;
+                        }
+
+                        Edge mst[V - 1];
+                        int mstSize = 0;
+
+                        for (int i = 0; i < E && mstSize < V - 1; i++) {
+                            Edge edge = edges[idx[i]];
+                            int x = Find(parent, edge.sr c);
+                            int y = Find(parent, edge.dest);
+
+                            if (x != y) {
+                                mst[mstSize++] = edge;
+                                Union(parent, rank, x, y);
+                            }
+                        }
+
+                        cout << "Edges in the Minimum Spanning Tree:\n";
+                        int cost = 0;
+                        for (int i = 0; i < mstSize; i++) {
+                            cout << mst[i].src << " -- " << mst[i].dest << " == " << mst[i].weight << endl;
+                            cost += mst[i].weight;
+                        }
+                        cout << "Cost = " << cost << endl;
+                    }
+                    </code>
+                </pre>
+                <li><strong>Brute Force:</strong> Exhaustively explore all possibilities (e.g., string matching).</li>
+            </ul>
+        </section>
+
+        <section id="hierarchical-data">
+            <h2>4. Hierarchical Data and Tree Structures</h2>
+            <ul>
+                <li><strong>Tree:</strong> A hierarchical structure with a root node and child nodes.</li>
+                <li><strong>Binary Search Tree (BST):</strong> Maintains sorted order for efficient searches.</li>
+                <li><strong>AVL Tree:</strong> Self-balancing BST that prevents skewness.</li>
+                <li><strong>Red-Black Tree:</strong> A balanced BST ensuring logarithmic time operations.</li>
+                <li><strong>Heap:</strong> A complete binary tree used in priority queues.</li>
+                <li><strong>Trie:</strong> Specialized for prefix-based search.</li>
+            </ul>
+        </section>
+
+        <section id="array-queries">
+            <h2>5. Array Query Algorithms</h2>
+            <ul>
+                <li><strong>Segment Tree:</strong> Handles range queries efficiently.</li>
+                <li><strong>Fenwick Tree:</strong> Optimized for cumulative frequency queries.</li>
+                <li><strong>Sparse Table:</strong> Precomputes answers for range queries.</li>
+            </ul>
+        </section>
+
+        <section id="trees-vs-graphs">
+            <h2>6. Trees vs Graphs</h2>
+            <p><strong>Trees:</strong> A connected, acyclic graph with a single path between nodes.</p>
+            <p>Applications: XML parsing, game trees.</p>
+            <p><strong>Graphs:</strong> Generalized structure with nodes (vertices) and edges (connections).</p>
+            <p>Applications: Networking, shortest path calculations.</p>
+        </section>
+
+        <section id="sorting-searching">
+            <h2>7. Sorting and Searching Algorithms</h2>
+            <p><strong>Sorting Techniques:</strong> Bubble Sort (O(n²)), MergeSort (O(n log n)), QuickSort (average O(n
+                log n)).</p>
+            <pre>Bubble Sort
+                ALGORITHM BubbleSort(A[0..n-1])
+                // Sorts a given array using bubble sort
+                // Input: An array A[0..n-1] of orderable
+                // elements
+                // Output: Array A[0...n-1] sorted in
+                // ascending order
+                for i <- 0 to n - 2 do
+                for j <- 0 to n - 2 - i do
+                if A[j+1] < A[j]
+                swap A[j] and A[j+1]
+            </pre>
+            <p><strong>Searching Techniques:</strong> Linear Search (O(n)), Binary Search (O(log n)).</p>
+            <pre>Linear search :
+                int linearSearch(const vector<int>& arr, int key) {
+                    for (int i = 0; i < arr.size(); i++) {
+                        if (arr[i] == key) return i;
+                    }
+                    return -1;
+                }
+                
+Binary search :
+                int binarySearch(const vector<int>& arr, int key) {
+                    int left = 0, right = arr.size() - 1;
+                    while (left <= right) {
+                        int mid = left + (right - left) / 2;
+                        if (arr[mid] == key) return mid;
+                        if (arr[mid] < key) left = mid + 1;
+                        else right = mid - 1;
+                    }
+                    return -1;
+                }
+            </pre>
+        </section>
+
+        <section id="graph-algorithms">
+            <h2>8. Graph Algorithms</h2>
+            <p><strong>Spanning Trees:</strong> Minimal cost connectivity (e.g., Prim’s, Kruskal’s).</p>
+            <p><strong>Shortest Paths:</strong> Algorithms like Dijkstra, Bellman-Ford, Floyd-Warshall.</p>
+            <pre>Dijkstra's Algorithm :
+                    #include &lt;iostream&gt;
+                    #include &lt;vector&gt;
+                    #define MAX 9999
+                    using namespace std;
+                    
+                    class dijkstra {
+                    public:
+                        int dist[100];
+                        int path[100];
+                        int visited[100] = {0};
+                        int v;
+                        int src;
+                    
+                        void read(int cost[50][50]);
+                        void initialize(int cost[50][50]);
+                    };
+                    
+                    void dijkstra::initialize(int cost[50][50]) {
+                        for (int i = 0; i < v; i++) {
+                            path[i] = src;
+                            dist[i] = cost[src][i];
+                            visited[i] = 0;
+                        }
+                        visited[src] = 1;
+                    }
+                    
+                    void dijkstra::read(int cost[50][50])
+                     {
+                        cout << "Enter the cost matrix:" << endl;
+                        for (int i = 0; i < v; i++)
+                        {
+                            for (int j = 0; j < v; j++)
+                                {
+                                cin >> cost[i][j];
+                    
+                                }
+                        }
+                    }
+                    
+                    
+                    int main()
+                    {
+                        int cost[50][50];
+                        dijkstra d;
+                    
+                        cout << "Enter the number of vertices: ";
+                        cin >> d.v;
+                    
+                        d.read(cost);
+                    
+                        cout << "Enter the source vertex: ";
+                        cin >> d.src;
+                    
+                        d.initialize(cost);
+                    
+                    
+                        cout << "Initialized distances from source: ";
+                        for (int i = 0; i < d.v; i++)
+                        {
+                            cout << d.dist[i] << " ";
+                        }
+                        cout << endl;
+                    
+                        return 0;
+                    }                    
+            </pre>
+        </section>
+
+        <section id="techniques">
+            <h2>9. Algorithm Design Techniques</h2>
+            <ul>
+                <li><strong>Divide and Conquer:</strong> Splits problems recursively.</li>
+                <li><strong>Dynamic Programming:</strong> Stores intermediate results to avoid recomputation.</li>
+                <li><strong>Greedy Algorithms:</strong> Chooses the best current option.</li>
+                <li><strong>Backtracking:</strong> Explores solutions and backtracks when constraints fail.</li>
+                <li><strong>Branch and Bound:</strong> Optimized searching for combinatorial problems.</li>
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 - Design and Analysis of Algorithms</p>
+    </footer>
+</body>
+
+</html>

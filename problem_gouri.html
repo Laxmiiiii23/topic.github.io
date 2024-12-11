@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design and Analysis of Algorithms - Learning Portfolio</title>
+    <link rel="stylesheet" href="styles_gouri.css">
+</head>
+<body>
+    <header>
+        <h1>Design and Analysis of Algorithms - Learning Portfolio</h1>
+    </header>
+    
+    <main>
+        <section>
+            <h2>1. What are the kinds of problems we see in nature? (iteration, recursion, backtracking)</h2>
+            <ul>
+                <li><strong>Iteration:</strong> Repetition of a process in a loop-like manner.
+                    <ul>
+                        <li><strong>Example:</strong> Seasonal changes (spring, summer, autumn, winter) follow a cyclic iterative pattern.</li>
+                    </ul>
+                </li>
+                <li><strong>Recursion:</strong> A process calling itself, often with a smaller problem size.
+                    <ul>
+                        <li><strong>Example:</strong> Tree branching follows a recursive pattern.</li>
+                    </ul>
+                </li>
+                <li><strong>Backtracking:</strong> Exploring potential paths to achieve a goal, backing up when necessary.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>2. What is space and time efficiency? Why are they important? Explain the different classes of problems and orders of growth</h2>
+            <p><strong>Time Efficiency:</strong> Measures how long an algorithm takes as input size grows. Faster algorithms handle larger inputs in less time.</p>
+            <p><strong>Space Efficiency:</strong> Measures memory usage of an algorithm. Less memory usage means faster access and better performance.</p>
+            <p><strong>Classes of Problems:</strong></p>
+            <ul>
+                <li>Constant: <span class="highlight">O(1)</span></li>
+                <li>Logarithmic: <span class="highlight">O(log(n))</span></li>
+                <li>Linear: <span class="highlight">O(n)</span></li>
+                <li>Quadratic: <span class="highlight">O(n²)</span></li>
+                <li>Cubic: <span class="highlight">O(n³)</span></li>
+                <li>Exponential: <span class="highlight">O(2ⁿ)</span></li>
+                <li>Factorial: <span class="highlight">O(n!)</span></li>
+            </ul>
+            <p><strong>Orders of Growth:</strong></p>
+            <ul>
+                <li>Best Case: The fastest scenario (e.g., finding the first item in a search).</li>
+                <li>Average Case: A realistic view of performance.</li>
+                <li>Worst Case: The slowest or most resource-intensive scenario.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>3. Take away from different design principles from chapter 2</h2>
+            <ul>
+                <li><strong>Bubble Sort:</strong> O(n²) - Repeatedly compare and swap adjacent items.</li>
+                <li><strong>Selection Sort:</strong> O(n²) - Find and move the smallest item repeatedly.</li>
+                <li><strong>Merge Sort:</strong> O(n log n) - Divide, sort, and merge.</li>
+                <li><strong>Quick Sort:</strong> O(n log n) - Partition around a pivot and sort recursively.</li>
+                <li><strong>Insertion Sort:</strong> O(n²) (worst case) - Insert elements one at a time into the correct position.</li>
+                <li><strong>Heap Sort:</strong> O(n log n) - Uses a binary heap structure.</li>
+                <li><strong>Boyer-Moore:</strong> Efficient string-searching algorithm.</li>
+                <li><strong>Kruskal's Algorithm:</strong> Finds the minimum spanning tree.</li>
+                <li><strong>Floyd-Warshall Algorithm:</strong> O(n³) - Finds shortest paths between all pairs of nodes.</li>
+                <li><strong>Prim's Algorithm:</strong> Builds a minimum spanning tree by selecting smallest edges.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>4. The hierarchical data and how different tree data structures solve and optimize over the problem scenarios (tree, bst, avl, 2-3, red-black, heap, trie)</h2>
+            <p>Hierarchical data is organized like a tree with parent-child relationships.</p>
+            <ul>
+                <li><strong>Tree:</strong> A hierarchical structure with nodes and edges.</li>
+                <li><strong>Binary Search Tree (BST):</strong> Created by taking the first incoming element as the root node, with all items lesser than the root moved to the left and greater than or equal to the right side of the tree. O(log n) (average), O(n) (worst case) - Efficient but slows if unbalanced.</li>
+                <li><strong>AVL Tree:</strong> O(log n) - Self-balancing BST. In an AVL tree, the heights of the two child sub-trees of any node differ by 0 or 1.</li>
+                <li><strong>2-3 Tree:</strong> O(log n) - A 2-3 Tree has either a 2-node (2 children with 1 data key present) or a 3-node (3 children with 2 data keys present).</li>
+                <li><strong>Red-Black Tree:</strong> O(log n) - Balances using color rules.</li>
+                <li><strong>Heap:</strong> Efficient for priority tasks (e.g., min/max operations).</li>
+                <li><strong>Trie:</strong> Fast for prefix searches and autocomplete.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>5. The need of array query algorithms and their implications. Their applications and principles</h2>
+            <p>Essential for efficiently processing and retrieving information from arrays.</p>
+            <ul>
+                <li><strong>Need:</strong> Faster operations for large datasets.</li>
+                <li><strong>Principle:</strong> Preprocess data to enable fast queries and updates.</li>
+                <li><strong>Applications:</strong> Range sums, min/max calculations, and data updates.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>6. Differentiate between tree and graphs and their traversals. The applications of each</h2>
+            <p><strong>Trees:</strong> Hierarchical, acyclic, single root, one path between nodes.</p>
+            <p><strong>Graphs:</strong> General structures, cyclic or acyclic, multiple paths.</p>
+            <p><strong>Traversals:</strong></p>
+            <ul>
+                <li><strong>Tree</strong>
+                    <ul>
+                        <li>Inorder: (Left, Root, Right)</li>
+                        <li>Preorder: (Root, Left, Right)</li>
+                        <li>Postorder: (Left, Right, Root)</li>
+                    </ul>
+                </li>
+                <li><strong>Graph Traversals</strong>
+                    <ul>
+                        <li>Depth-First Search (DFS)</li>
+                        <li>Breadth-First Search (BFS)</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>7. Deliberate on sorting and searching algorithms, the technique behind each and their connection to the real world</h2>
+            <p><strong>Sorting Algorithms:</strong></p>
+            <ul>
+                <li>Bubble Sort: Compare and swap adjacent elements.</li>
+                <li>Merge Sort: Divide, sort, and merge.</li>
+                <li>Quick Sort: Efficient for large datasets, uses partitioning.</li>
+                <li>Insertion Sort: Good for small or nearly sorted data.</li>
+            </ul>
+            <p><strong>Searching Algorithms:</strong></p>
+            <ul>
+                <li>Linear Search: Check each element in sequence.</li>
+                <li>Binary Search: Divide and conquer in sorted data.</li>
+                <li>DFS: Explore deeply before backtracking.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>8. Discuss the importance of graph algorithms with respect to spanning trees and shortest paths</h2>
+            <p><strong>Spanning Trees:</strong> Minimize connectivity costs in networks.</p>
+            <p><strong>Shortest Paths:</strong> Optimize routes for navigation and communication.</p>
+            <ul>
+                <li><strong>Applications:</strong> GPS systems, network design, and data packet routing.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>9. Discuss the different studied algorithm design techniques.</h2> 
+            <h3>Backtracking</h3>
+            <p>Backtracking is like trying to solve a puzzle by making a series of guesses, and if a guess turns out to be wrong, you backtrack and try a different guess. Examples include the N-Queens Problem.</p>
+            
+            <h3>Kruskal's Algorithm</h3>
+            <p>Kruskal's Algorithm adds edges in increasing order of weight, avoiding cycles, until all vertices are connected.</p>
+            
+            <h3>Dijkstra's Algorithm</h3>
+            <p>Dijkstra's Algorithm finds the shortest path from a source vertex to all other vertices in a graph with non-negative weights.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 | Design Analysis and Algorithm</p>
+    </footer>
+</body>
+</html>
