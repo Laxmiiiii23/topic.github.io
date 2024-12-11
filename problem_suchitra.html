@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Learning Reflections</title>
+    <link rel="stylesheet" href="stylesom.css">
+</head>
+<body>
+    <header>
+        <h1>Course Learning Reflections</h1>
+    </header>
+    <main>
+        <!-- Topic 1 -->
+        <section>
+            <h2>1. Problems in Nature: Iteration, Recursion, and Backtracking</h2>
+            <article>
+                <h3>Iteration</h3>
+                <p><strong>Definition:</strong> Iteration relies on repeating steps in a controlled loop structure. It’s deterministic and efficient for linear or predictable tasks.</p>
+                <p><strong>Analogy in Nature:</strong> The growth of annual tree rings illustrates iterative patterns over time.</p>
+                <p><strong>Algorithmic Applications:</strong> Sorting algorithms like <em>Insertion Sort</em> or <em>Bubble Sort</em>, and searching algorithms like <em>Linear Search</em>.</p>
+                <pre>
+<code>
+long long factorial(int n) {
+    long long result = 1;
+    for (int i = 1; i <= n; ++i) {
+        result *= i;
+    }
+    return result;
+}
+</code>
+                </pre>
+            </article>
+            <article>
+                <h3>Recursion</h3>
+                <p><strong>Definition:</strong> Recursion involves a function solving smaller instances of the same problem.</p>
+                <p><strong>Examples in Nature:</strong> The fractal growth of snowflakes or the Fibonacci sequence in biological structures showcases recursion.</p>
+                <p><strong>Algorithmic Applications:</strong> <em>Merge Sort</em>, <em>Quick Sort</em>, and <em>Binary Search</em>.</p>
+                <pre>
+<code>
+int fibonacci(int n) {
+    if (n <= 1) {
+        return n; // Base cases: Fibonacci(0) = 0, Fibonacci(1) = 1
+    }
+    return fibonacci(n - 1) + fibonacci(n - 2); // Recursive step
+}
+</code>
+                </pre>
+            </article>
+            <article>
+                <h3>Backtracking</h3>
+                <p><strong>Definition:</strong> Backtracking explores potential solutions systematically and abandons non-feasible paths (pruning).</p>
+                <p><strong>Examples in Nature:</strong> Ant colonies finding the shortest food path resemble backtracking with optimization.</p>
+                <p><strong>Algorithmic Applications:</strong> Problems like <em>N-Queens</em>, <em>Sudoku Solvers</em>, and <em>Hamiltonian Path</em>.</p>
+                <pre>
+<code>
+bool isSafe(int board[][10], int row, int col, int N) {
+    for (int i = 0; i < row; i++) {
+        if (board[i][col] == 1 || 
+            (col - (row - i) >= 0 && board[i][col - (row - i)] == 1) || 
+            (col + (row - i) < N && board[i][col + (row - i)] == 1)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool solveNQueens(int board[][10], int row, int N) {
+    if (row == N) {
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                if (board[i][j] == 1) cout << "Q ";
+                else cout << ". ";
+            }
+            cout << endl;
+        }
+        cout << endl;
+        return true;
+    }
+
+    bool res = false;
+    for (int col = 0; col < N; col++) {
+        if (isSafe(board, row, col, N)) {
+            board[row][col] = 1;
+            res = solveNQueens(board, row + 1, N) || res;
+            board[row][col] = 0;
+        }
+    }
+    return res;
+}
+</code>
+                </pre>
+            </article>
+        </section>
+
+        <!-- Topic 2 -->
+        <section>
+            <h2>2. Space and Time Efficiency</h2>
+            <p><strong>Space Efficiency:</strong> The amount of memory an algorithm uses during execution.</p>
+            <p><strong>Example:</strong> Recursive algorithms like Fibonacci require more stack memory due to repeated calls.</p>
+            <p><strong>Time Efficiency:</strong> The time an algorithm takes to run, measured in terms of input size.</p>
+            <h3>Orders of Growth</h3>
+            <ul>
+                <li>Constant: <code>O(1)</code> — Accessing an element in an array.</li>
+                <li>Logarithmic: <code>O(log n)</code> — Binary Search in a sorted dataset.</li>
+                <li>Linear: <code>O(n)</code> — Scanning a list for a value.</li>
+                <li>Quadratic: <code>O(n²)</code> — Comparing all pairs.</li>
+                <li>Exponential: <code>O(2ⁿ)</code> — Tower of Hanoi.</li>
+            </ul>
+        </section>
+
+        <!-- Topic 3 -->
+        <section>
+            <h2>3. Takeaways from Design Principles</h2>
+            <article>
+                <h3>Divide and Conquer</h3>
+                <pre>
+<code>
+void MergeSort(int A[], int n) {
+    // Dividing array into smaller subarrays and merging them back
+}
+</code>
+                </pre>
+            </article>
+            <article>
+                <h3>Dynamic Programming</h3>
+                <p>Stores results of subproblems, avoiding redundant computation.</p>
+                <pre>
+<code>
+// Knapsack problem example
+</code>
+                </pre>
+            </article>
+            <article>
+                <h3>Greedy Algorithms</h3>
+                <pre>
+<code>
+int Find(int parent[], int i) {
+    if (parent[i] != i)
+        parent[i] = Find(parent, parent[i]);
+    return parent[i];
+}
+
+void Union(int parent[], int rank[], int x, int y) {
+    int xroot = Find(parent, x);
+    int yroot = Find(parent, y);
+
+    if (rank[xroot] < rank[yroot])
+        parent[xroot] = yroot;
+    else if (rank[xroot] > rank[yroot])
+        parent[yroot] = xroot;
+    else {
+        parent[yroot] = xroot;
+        rank[xroot]++;
+    }
+}
+
+void KruskalMST(Edge edges[], int E, int V) {
+    int weights[E], idx[E];
+    for (int i = 0; i < E; i++) {
+        weights[i] = edges[i].weight;
+        idx[i] = i;
+    }
+
+    MergeSort(weights, idx, 0, E - 1);
+
+    int parent[V], rank[V];
+    for (int i = 0; i < V; i++) {
+        parent[i] = i;
+        rank[i] = 0;
+    }
+
+    Edge mst[V - 1];
+    int mstSize = 0;
+
+    for (int i = 0; i < E && mstSize < V - 1; i++) {
+        Edge edge = edges[idx[i]];
+        int x = Find(parent, edge.src);
+        int y = Find(parent, edge.dest);
+
+        if (x != y) {
+            mst[mstSize++] = edge;
+            Union(parent, rank, x, y);
+        }
+    }
+
+    cout << "Edges in the Minimum Spanning Tree:\n";
+    int cost = 0;
+    for (int i = 0; i < mstSize; i++) {
+        cout << mst[i].src << " -- " << mst[i].dest << " == " << mst[i].weight << endl;
+        cost += mst[i].weight;
+    }
+    cout << "Cost = " << cost << endl;
+}
+</code>
+                </pre>
+            </article>
+        </section>
+
+        <!-- Topic 4 -->
+        <section>
+            <h2>4. Hierarchical Data and Tree Structures</h2>
+            <ul>
+                <li><strong>Binary Search Tree (BST):</strong> Maintains sorted order for efficient searches.</li>
+                <li><strong>AVL Tree:</strong> Self-balancing BST that prevents skewness.</li>
+                <li><strong>Red-Black Tree:</strong> A balanced BST ensuring logarithmic time operations.</li>
+                <li><strong>Heap:</strong> A complete binary tree used in priority queues.</li>
+                <li><strong>Trie:</strong> Specialized for prefix-based search.</li>
+            </ul>
+        </section>
+
+        <!-- Topic 5 -->
+        <section>
+            <h2>5. Array Query Algorithms</h2>
+            <p>Segment Tree, Fenwick Tree, and Sparse Table optimize performance for range queries and cumulative frequency queries.</p>
+        </section>
+
+        <!-- Topic 6 -->
+        <section>
+            <h2>6. Trees vs Graphs</h2>
+            <p><strong>Difference:</strong> Trees are acyclic and hierarchical, suitable for file systems, while graphs can model networks with cycles, such as transportation systems.</p>
+        </section>
+
+        <!-- Topic 7 -->
+        <section>
+            <h2>7. Sorting and Searching Algorithms</h2>
+            <p><strong>Sorting Techniques:</strong> Bubble Sort (O(n²)), MergeSort (O(n log n)), QuickSort (average O(n log n)).</p>
+            <pre>
+<code>
+void bubbleSort(int arr[], int n) {
+    for (int i = 0; i < n-1; i++) {
+        for (int j = 0; j < n-i-1; j++) {
+            if (arr[j] > arr[j+1]) {
+                swap(arr[j], arr[j+1]);
+            }
+        }
+    }
+}
+</code>
+                </pre>
+            <p><strong>Searching Techniques:</strong> Linear Search (O(n)), Binary Search (O(log n)).</p>
+        </section>
+
+        <!-- Topic 8 -->
+        <section>
+            <h2>8. Graph Algorithms</h2>
+            <p><strong>Spanning Trees:</strong> Minimal cost connectivity (e.g., Prim’s, Kruskal’s).</p>
+            <pre>
+<code>
+class Dijkstra {
+public:
+    int dist[100];
+    int path[100];
+    int visited[100] = {0};
+    int v;
+    int src;
+
+    void initialize(int cost[50][50]);
+    void read(int cost[50][50]);
+};
+
+void Dijkstra::initialize(int cost[50][50]) {
+    for (int i = 0; i < v; i++) {
+        path[i] = src;
+        dist[i] = cost[src][i];
+        visited[i] = 0;
+    }
+    visited[src] = 1;
+}
+</code>
+            </pre>
+        </section>
+
+        <!-- Topic 9 -->
+        <section>
+            <h2>9. Algorithm Design Techniques</h2>
+            <ul>
+                <li><strong>Divide and Conquer:</strong> Solves problems by breaking them into smaller parts (e.g., MergeSort).</li>
+                <li><strong>Dynamic Programming:</strong> Solves overlapping subproblems (e.g., Longest Common Subsequence).</li>
+                <li><strong>Greedy:</strong> Approximates solutions efficiently (e.g., Huffman Coding).</li>
+                <li><strong>Backtracking:</strong> Explores all configurations, eliminating invalid ones (e.g., N-Queens).</li>
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Course Reflections by Algorithm Professor</p>
+    </footer>
+</body>
+</html>

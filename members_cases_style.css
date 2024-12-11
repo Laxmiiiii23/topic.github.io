@@ -1,0 +1,106 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+    background-image: url(https://img.freepik.com/free-vector/hexagonal-infographic-white-background-template_1017-19276.jpg?t=st=1733832633~exp=1733836233~hmac=771f27bb77ed78095f02857f7e9ddc0d8e8486c2245cba36e64f01035a26da37&w=1060);
+}
+
+/* Header Styles */
+header {
+    background-color: #006699;;
+    color: #fff;
+    padding: 20px 10px;
+    text-align: center;
+}
+
+header ul{
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-items: start;
+}
+
+header ul li {
+    background-color: #dcedff;
+    margin-bottom: 0.5rem;
+    padding: 0.75rem;
+    border-radius: 5px;
+    margin: 0.5rem;
+}
+
+header h1 {
+    margin: 0;
+}
+
+/* Main Section Styles */
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+a {
+    color: #2d324a;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.team-member {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    padding: 15px;
+    margin: 15px;
+    transition: transform 0.3s ease;
+}
+
+.team-member:hover {
+    transform: translateY(-5px);
+}
+
+.team-member img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.team-member h2 {
+    margin: 10px 0 5px;
+}
+
+.team-member p {
+    font-size: 14px;
+    color: #666;
+}
+
+.team-member a {
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #007BFF;
+    font-weight: bold;
+}
+
+.team-member a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #006699;;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 20px;
+}
