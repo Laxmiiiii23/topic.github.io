@@ -1,0 +1,23 @@
+struct Node {
+    string val;
+    Node* left;
+    Node* right;
+    Node(string v) : val(v), left(NULL), right(NULL) {}
+};
+
+Node* buildTree() {
+    Node* root = new Node("Is waste volume > 50?");
+    root->left = new Node("Send small truck");
+    root->right = new Node("Send large truck");
+    return root;
+}
+
+void traverseTree(Node* node) {
+    while (node->left && node->right) {
+        cout << node->val << " (yes/no): ";
+        string ans;
+        cin >> ans;
+        node = (ans == "yes") ? node->right : node->left;
+    }
+    cout << node->val << endl;
+}
