@@ -1,0 +1,73 @@
+struct Edge {
+    int src, dest, weight;
+};
+
+struct DisjointSet {
+    int *parent, *rank;
+
+    DisjointSet(int n) {
+        parent = new int[n];
+        rank = new int[n];
+        for (int i = 0; i < n; i++) {
+            parent[i] = i;
+            rank[i] = 0;
+        }
+    }
+
+    ~DisjointSet() {
+        delete[] parent;
+        delete[] rank;
+    }
+
+    int find(int u) {
+        if (u != parent[u]) {
+            parent[u] = find(parent[u]); 
+        }
+        return parent[u];
+    }
+
+    void unionSet(int u, int v) {
+        int root_u = find(u);
+        int root_v = find(v);
+        if (root_u != root_v) {
+            
+            if (rank[root_u] > rank[root_v]) {
+                parent[root_v] = root_u;
+            } else if (rank[root_u] < rank[root_v]) {
+                parent[root_u] = root_v;
+            } else {
+                parent[root_v] = root_u;
+                rank[root_u]++;
+            }
+        }
+    }
+};
+
+void sortEdges(Edge edges[], int edgeCount) {
+    for (int i = 0; i < edgeCount - 1; i++) {
+        for (int j = 0; j < edgeCount - i - 1; j++) {
+            if (edges[j].weight > edges[j + 1].weight) {
+                
+                Edge temp = edges[j];
+                edges[j] = edges[j + 1];
+                edges[j + 1] = temp;
+            }
+        }
+    }
+}
+
+void kruskal(int n, Edge edges[], int edgeCount) {
+    sortEdges(edges, edgeCount);
+    DisjointSet ds(n);
+
+    cout << "Edges in the Minimum Spanning Tree:\n";
+    for (int i = 0; i < edgeCount; i++) {
+        int u = edges[i].src;
+        int v = edges[i].dest;
+        if (ds.find(u) != ds.find(v)) {
+            ds.unionSet(u, v);
+            cout << u << " -- " << v << " (Weight: " << edges[i].weight << ")\n";
+        }
+    }
+}
+

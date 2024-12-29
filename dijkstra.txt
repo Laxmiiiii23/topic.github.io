@@ -1,0 +1,50 @@
+
+void dijkstra(int numNodes, vector<vector<int> > &adjMatrix)
+{
+    vector<bool> visited(numNodes, false); // Visited nodes
+    vector<int> distance(numNodes, 999); // Distance from source
+    vector<int> path(numNodes, -1); // Parent nodes in the path
+
+    // Initialize distance to source node
+    int source;
+    int i,j;
+    cout << "Enter the source : ";
+    cin >> source;
+    distance[source] = 0;
+
+    for (i=0; i<numNodes-1; i++)
+    {
+        // Find the node with the minimum distance that is not yet visited
+        int minDistance = 999, minIndex=-1;
+        for (j = 0; j < numNodes; j++) {
+            if (!visited[j] && distance[j] <= minDistance) {
+                minDistance = distance[j];
+                minIndex = j;
+            }
+        }
+
+        // Mark the chosen node as visited
+        int currentNode = minIndex;
+        visited[currentNode] = true;
+
+        // Update distances for adjacent nodes
+        for (j = 0; j < numNodes; j++) {
+            if (!visited[j] && adjMatrix[currentNode][j] && distance[currentNode] < 999
+                && distance[currentNode] + adjMatrix[currentNode][j] < distance[j])
+            {
+                distance[j] = distance[currentNode] + adjMatrix[currentNode][j];
+                path[j] = currentNode; // Update parent
+            }
+        }
+    }
+    // Output results
+    cout << "Node\tDistance\tPath" << endl;
+    for (i = 0; i < numNodes; i++) {
+        cout << i << "\t" << distance[i] << "\t\t";
+        int temp = i;
+        while (temp != -1) {
+            cout << temp << "\t";
+            temp = path[temp];
+        }
+        cout << endl;
+  }

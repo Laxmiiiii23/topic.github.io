@@ -1,0 +1,36 @@
+// Graph representation
+typedef unordered_map<char, vector<char>> Graph;
+
+// DFS to identify bottlenecks
+void dfs(char node, Graph &graph, unordered_set<char> &visited) {
+    visited.insert(node);
+    cout << node << " ";
+    for (char neighbor : graph[node]) {
+        if (visited.find(neighbor) == visited.end()) {
+            dfs(neighbor, graph, visited);
+        }
+    }
+}
+
+// BFS for simple shortest path
+void bfs(char start, Graph &graph) {
+    queue<char> q;
+    unordered_set<char> visited;
+    q.push(start);
+    visited.insert(start);
+    cout << "BFS Traversal from " << start << ": ";
+
+    while (!q.empty()) {
+        char node = q.front();
+        q.pop();
+        cout << node << " ";
+
+        for (char neighbor : graph[node]) {
+            if (visited.find(neighbor) == visited.end()) {
+                visited.insert(neighbor);
+                q.push(neighbor);
+            }
+        }
+    }
+    cout << endl;
+}
