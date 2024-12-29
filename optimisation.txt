@@ -1,0 +1,14 @@
+
+    for (int i = 0; i < transports.size(); i++) {
+        transports[i].total_co2 = transports[i].co2_per_km * transports[i].distance;
+    }
+
+    sort(transports.begin(), transports.end(), [](Transport a, Transport b) {
+        return a.total_co2 < b.total_co2;
+    });
+
+    cout << "Best transport options to minimize CO₂ emissions: \n";
+    for (int i = 0; i < transports.size(); i++) {
+        cout << transports[i].type << ": " << transports[i].total_co2 << "g CO₂\n";
+    }
+    return 0;
