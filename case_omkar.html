@@ -15,17 +15,13 @@
     </header>
     <main>
         <div class="container">
-        <h1>Click to Open PDF</h1>
+        <h1>Click to Open PDF in a New Tab</h1>
         <button id="open-btn">Open PDF</button>
-        <div id="pdf-container" class="hidden">
-            <iframe id="pdf-viewer" class="pdf-viewer" type="application/pdf"></iframe>
-        </div>
     </div>
 
     <script>
         document.getElementById("open-btn").addEventListener("click", function() {
-            document.getElementById("pdf-container").classList.remove("hidden");
-            document.getElementById("pdf-viewer").src = "omkar city case.pdf"; // Replace with the path to your PDF
+            window.open("omkar city case.pdf", "_blank"); 
         });
     </script>
         <section class="business-case">
