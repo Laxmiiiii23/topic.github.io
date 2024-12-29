@@ -12,6 +12,16 @@
         <p>Explore innovative business ideas that align with the UN Sustainable Development Goals (SDGs).</p>
     </header>
     <main>
+        <div class="container">
+        <h1>Click to Open PDF in a New Tab</h1>
+        <button id="open-btn">Open PDF</button>
+    </div>
+
+    <script>
+        document.getElementById("open-btn").addEventListener("click", function() {
+            window.open("succhitra_business case.pdf", "_blank"); 
+        });
+    </script>
         <section class="business-case">
             <h2>1. Tourism </h2>
             <img src="https://img.freepik.com/free-vector/travel-concept-with-landmarks_1057-4873.jpg?t=st=1733830217~exp=1733833817~hmac=c7437facb529fecd6e5c85f638c3d2dad98cf09c0acac22765294d9dc4c95482&w=740" width="100%"/>
