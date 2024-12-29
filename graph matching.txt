@@ -1,0 +1,38 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+struct Node {
+    int id;
+    bool matched;
+};
+
+bool matchTransport(int demand, vector<Node>& resources) {
+    for (int i = 0; i < resources.size(); i++) {
+        if (!resources[i].matched && resources[i].id >= demand) {
+            resources[i].matched = true;
+            return true;
+        }
+    }
+    return false;
+}
+
+int main() {
+    vector<int> transport_demand = {4, 7, 3, 5};
+    vector<Node> resources = {{3, false}, {5, false}, {6, false}, {8, false}};
+    
+    sort(resources.begin(), resources.end(), [](Node a, Node b) {
+        return a.id < b.id;
+    });
+    
+    for (int i = 0; i < transport_demand.size(); i++) {
+        if (matchTransport(transport_demand[i], resources)) {
+            cout << "Demand " << transport_demand[i] << " matched!\n";
+        } else {
+            cout << "Demand " << transport_demand[i] << " not matched.\n";
+        }
+    }
+    
+    return 0;
+}
