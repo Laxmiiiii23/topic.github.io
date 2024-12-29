@@ -34,8 +34,7 @@ main {
 
 .container {
     text-align: center;
-    width: 80%;
-    max-width: 900px;
+    width: 100%;
 }
 
 .container h1 {
