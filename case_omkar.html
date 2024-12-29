@@ -15,9 +15,19 @@
     </header>
     <main>
         <div class="container">
-        <h1>View PDF</h1>
-        <iframe src="omkar city case.pdf" class="pdf-viewer" type="application/pdf"></iframe>
+        <h1>Click to Open PDF</h1>
+        <button id="open-btn">Open PDF</button>
+        <div id="pdf-container" class="hidden">
+            <iframe id="pdf-viewer" class="pdf-viewer" type="application/pdf"></iframe>
+        </div>
     </div>
+
+    <script>
+        document.getElementById("open-btn").addEventListener("click", function() {
+            document.getElementById("pdf-container").classList.remove("hidden");
+            document.getElementById("pdf-viewer").src = "omkar city case.pdf"; // Replace with the path to your PDF
+        });
+    </script>
         <section class="business-case">
             <h2>1. Renewable Energy Solutions</h2>
             <img src="https://img.freepik.com/free-vector/realistic-ecology-solar-farm-with-installed-panels-wind-turbines-green-field-vector-illustration_1284-84910.jpg?t=st=1733812265~exp=1733815865~hmac=a1640f3977905ad6dbc875a5ae460e24c5d759cf8423490e9297c116fb9d8ace&w=1380"
